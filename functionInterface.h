@@ -1,5 +1,5 @@
-#ifndef __FUNCTION_INTERFACE__
-#define __FUNCTION_INTERFACE__
+#ifndef __FUNCTION_INTERFACE_H__
+#define __FUNCTION_INTERFACE_H__
 
 #include "inc.h"
 
