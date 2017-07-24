@@ -1,0 +1,18 @@
+language: cpp
+compiler:
+  - g++
+  - gcc
+os:
+  - linux
+before_script:
+  - echo "before script:"
+script: make
+after_success:
+  - echo "make success"
+  #- chmod
+after_failure:
+  - echo "make failure"
+
+after_script:
+  - echo "compile end"
+
