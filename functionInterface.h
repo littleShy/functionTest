@@ -1,7 +1,9 @@
 #ifndef __FUNCTION_INTERFACE_H__
 #define __FUNCTION_INTERFACE_H__
 
-#include "inc.h"
+#include <iostream>
+#include <unistd.h>
+#include <map.h>
 
 class IFunctionInterface
 {
@@ -10,27 +12,36 @@ public:
 	{
 		EPTHREAD_TYPE,
 		EFILE_TYPE,
-		EINVALID_TYPE
+		EINVALID_FUNCTION_TYPE
 	};
 
-	typedef std::map<int, string> MapFunctionStr;
+	typedef std::map<string, int> MapFunctionStr;
 	typedef MapFunctionStr::iterator IterFunctionStr;
-	
+
 	static MapFunctionStr s_mFunctionStr;
-	
+	MapFunctionStr s_mSubFunctionStr;
+
 	IFunctionInterface(int iFunctionType, int iSubFunctionType = 0)
 	{
 		m_iFunctionType = iFunctionType;
 		m_iSubFunctionType = iSubFunctionType;
 	}
 
-	static void initFunctionStr()
+	void initFunctionStr()
 	{
-		s_mFunctionStr[EPTHREAD_TYPE] = "pthread";
-		s_mFunctionStr[EFILE_TYPE] = "file";
+		// pthread function
+		s_mFunctionStr["pthread"] = EPTHREAD_TYPE;
+
+		// file function
+		s_mFunctionStr["file"] = EFILE_TYPE;
 	}
 	
-	virtual void  usage() = 0;
+	void usage()
+	{
+		cout << "\t-t <value>" << endl;
+		for(IterFunctionStr iter=s_mFunctionStr.begin();iter<s_mFunctionStr.size();iter++)
+			cout << "\t\t" << iter.first << endl;
+	}
 	virtual int run() = 0;
 protected:
 	int m_iFunctionType;
