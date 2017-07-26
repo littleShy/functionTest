@@ -1,11 +1,17 @@
+DEST:functionTest
+OBJECTS:=functionTest.o
+LFLAGS:=-lpthread
+CXX:=g++
+CC:=gcc
 
-all: test
+all: $(DEST)
 
-test: test.o
-	g++ -lpthread -o test test.o
+$(OBJECTS):%.o:%.cpp
+	echo $< $^
+	$(CXX) $(LFLAGS) $< -o $@
 
-test.o: test.cpp
-	g++ -c test.cpp
+$(OBJECTS): inc.h functionInterface.h utility.h fileFunction.h
 
 clean:
-	rm -rf test *.o
+	$(RM) $(DEST) $(OBJECTS)
+

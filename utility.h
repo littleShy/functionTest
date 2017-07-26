@@ -1,7 +1,12 @@
+#ifndef __UTILITY_H__
+#define __UTILITY_H__
+
 #include <iostream>
+#include "functionInterface.h"
+
 using namespace std;
 
-class CUnility
+class CUtility
 {
     public:
         struct SFunctionParam
@@ -18,14 +23,14 @@ class CUnility
                 switch(ch)
                 {
                     case 't':
-                        if(s_mFunctionStr.find(optarg) != s_mFunctionStr.end())
-                            sParam.iFunction = s_mFunctionStr.at(optarg);
+                        if(IFunctionInterface::s_mFunctionStr.find(optarg) != IFunctionInterface::s_mFunctionStr.end())
+                            sParam.iFunction = IFunctionInterface::s_mFunctionStr.at(optarg);
                         else
                             iRet = -1;
                         break;
                     case 's':
-                        if(s_mFunctionSub.find(optarg) != s_mFunctionSub.end())
-                            sParam.iSubFunction = s_mFunctionSub.at(optarg);
+                        if(IFunctionInterface::s_mSubFunctionStr.find(optarg) != IFunctionInterface::s_mSubFunctionStr.end())
+                            sParam.iSubFunction = IFunctionInterface::s_mSubFunctionStr.at(optarg);
                         else
                             iRet = -1;
                         break;
@@ -39,3 +44,6 @@ class CUnility
         }
 
 };
+
+#endif
+

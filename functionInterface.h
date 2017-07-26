@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <map.h>
+#include <string.h>
+#include <map>
+
+using namespace std;
 
 class IFunctionInterface
 {
@@ -15,11 +18,11 @@ public:
 		EINVALID_FUNCTION_TYPE
 	};
 
-	typedef std::map<string, int> MapFunctionStr;
+	typedef map<string, int> MapFunctionStr;
 	typedef MapFunctionStr::iterator IterFunctionStr;
 
 	static MapFunctionStr s_mFunctionStr;
-	MapFunctionStr s_mSubFunctionStr;
+	static MapFunctionStr s_mSubFunctionStr;
 
 	IFunctionInterface(int iFunctionType, int iSubFunctionType = 0)
 	{
@@ -39,8 +42,8 @@ public:
 	void usage()
 	{
 		cout << "\t-t <value>" << endl;
-		for(IterFunctionStr iter=s_mFunctionStr.begin();iter<s_mFunctionStr.size();iter++)
-			cout << "\t\t" << iter.first << endl;
+		for(IterFunctionStr iter=s_mFunctionStr.begin();iter!=s_mFunctionStr.end();iter++)
+			cout << "\t\t" << iter->first << endl;
 	}
 	virtual int run() = 0;
 protected:
