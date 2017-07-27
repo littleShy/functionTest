@@ -1,9 +1,73 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    "version": "0.1.0",
-    "command": "g++",
-    "args": ["-Wall", "${file}", "-o", "${fileBasenameNoExtension}.exe"],
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "taskName": "Make: build",
+            "type": "shell",
+            "command": "make",
+            "windows": {
+                "command": "make"
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "taskName": "Make: clean",
+            "type": "shell",
+            "command": "make clean",
+            "windows": {
+                "command": "make clean"
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "taskName": "Run(No args)",
+            "type": "process",
+            "command": "$(fileBasenameNoExtension}.exe",
+            "windows": {
+                "command": "$(fileBasenameNoExtension}.exe"
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "taskName": "Run(With custom args)",
+            "type": "process",
+            "command": "$(fileBasenameNoExtension}.exe",
+            "args": [
+                "-t",
+                "file",
+                "-s",
+                "lin"
+            ],
+            "windows": {
+                "command": "$(fileBasenameNoExtension}.exe",
+                "args": [
+                "-t",
+                "file",
+                "-s",
+                "lin"
+                ]
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ],
     "problemMatcher": {
         "owner": "cpp",
         "fileLocation": ["relative", "${workspaceRoot}"],

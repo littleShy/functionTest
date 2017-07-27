@@ -5,51 +5,39 @@
 #include <unistd.h>
 #include <string.h>
 #include <map>
+#include "utility.h"
 
 using namespace std;
 
 class IFunctionInterface
 {
-public:
+  public:
 	enum EFUNCTION_TYPE
 	{
-		EPTHREAD_TYPE,
-		EFILE_TYPE,
+		EPTHREAD_FUNCTION_TYPE = 1,
+		EFILE_FUNCTION_TYPE,
 		EINVALID_FUNCTION_TYPE
 	};
 
 	typedef map<string, int> MapFunctionStr;
 	typedef MapFunctionStr::iterator IterFunctionStr;
+	typedef map<int, MapFunctionStr> MapSubFunctionStr;
+	typedef MapSubFunctionStr::iterator IterSubFunctionStr;
 
-	static MapFunctionStr s_mFunctionStr;
-	static MapFunctionStr s_mSubFunctionStr;
+	static MapFunctionStr s_mapFunctionStr;
+	static MapSubFunctionStr s_mapSubFunctionStr;
 
-	IFunctionInterface(int iFunctionType, int iSubFunctionType = 0)
-	{
-		m_iFunctionType = iFunctionType;
-		m_iSubFunctionType = iSubFunctionType;
-	}
+	IFunctionInterface(CUtility::SFunctionParam &sParam);
 
-	void initFunctionStr()
-	{
-		// pthread function
-		s_mFunctionStr["pthread"] = EPTHREAD_TYPE;
+	static void initFunctionStr();
 
-		// file function
-		s_mFunctionStr["file"] = EFILE_TYPE;
-	}
-	
-	void usage()
-	{
-		cout << "\t-t <value>" << endl;
-		for(IterFunctionStr iter=s_mFunctionStr.begin();iter!=s_mFunctionStr.end();iter++)
-			cout << "\t\t" << iter->first << endl;
-	}
-	virtual int run() = 0;
-protected:
+	static void usage();
+
+	virtual void run() = 0;
+
+  protected:
 	int m_iFunctionType;
 	int m_iSubFunctionType;
 };
 
 #endif
-

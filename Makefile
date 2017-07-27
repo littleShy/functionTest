@@ -1,6 +1,7 @@
 DEST:=functionTest
 
-OBJECTS:=functionTest.o
+
+OBJECTS:=functionInterface.o utility.o fileFunction.o pthreadFunction.o functionTest.o
 LFLAGS:=-lpthread
 CXX:=g++
 CC:=gcc
@@ -11,10 +12,7 @@ $(DEST):$(OBJECTS)
 	$(CXX) $(OBJECTS) -o $@
 
 $(OBJECTS):%.o:%.cpp
-	@echo ':' $< '|' $^
-	$(CXX) -c $(LFLAGS) $<
-
-$(OBJECTS): inc.h functionInterface.h utility.h fileFunction.h
+	$(CXX) -g -c $(LFLAGS) $^
 
 clean:
 	$(RM) $(DEST) $(OBJECTS)

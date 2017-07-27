@@ -2,27 +2,20 @@
 #define __FILE_FUNCTION_H__
 
 #include "functionInterface.h"
+#include "utility.h"
 
-class CFileFunction: public IFunctionInterface
+class CFileFunction : public IFunctionInterface
 {
-public:
-
-	CFileFunction(int iFunctionType, int iSubFunctionType = 0): IFunctionInterface(iFunctionType, iSubFunctionType){}
+  public:
+	CFileFunction(CUtility::SFunctionParam &sParam);
 	enum EFILE_SUB_FUNCTION
 	{
-		ELINK_FUNCTION
+		EFILE_SUB_TYPE_LINK = 1,
+		EFILE_INVALID_SUB_TYPE
 	};
 
-	void usage()
-	{
-		cout << "CFileFunction usage: " << endl;
-	}
-
-	int run()
-	{
-		cout << "CFileFunction run." << endl;
-		return 0;
-	}	
+	static void initSubFunctionStr(IFunctionInterface::MapFunctionStr &mSubFunctionStr);
+	void run();
 };
 
 #endif
