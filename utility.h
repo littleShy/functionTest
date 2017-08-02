@@ -34,13 +34,18 @@ enum ERROR_CODE
     EERROR_INVALID_FUNCTION_TYPE = 1001,
     EERROR_INVALID_SUB_FUNCTION_TYPE,
     EERROR_NO_VALID_SUB_FUNCTION,
+    EERROR_OPEN_FILE_FAILED,
+    EERROR_FUNCTION_FAILED = 1005,
     EERROR_MAX_ENUM
 };
 
 const char szErrorMsg[EERROR_MAX_ENUM-2][64] = 
 {
 "Invalid function type.",
-"Invalid sub function type."
+"Invalid sub function type.",
+"There is no valid sub function for current function.",
+"Open file failed."
+"Function test failed."
 };
 
 class CFunctionException

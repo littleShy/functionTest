@@ -2,6 +2,7 @@
 #define __FILE_FUNCTION_H__
 
 #include<sys/stat.h>
+#include<fcntl.h>
 #include<unistd.h>
 #include <stdio.h>
 #include "functionInterface.h"
@@ -14,7 +15,7 @@ class CFileFunction : public IFunctionInterface
         enum EFILE_SUB_FUNCTION
         {
             EFILE_SUB_TYPE_LINK = 1,
-            EFILE_SUB_TYPE_FSTAT,
+            EFILE_SUB_TYPE_STAT,
             EFILE_INVALID_SUB_TYPE
         };
 
@@ -22,7 +23,7 @@ class CFileFunction : public IFunctionInterface
         void run();
 
 	private:
-        void testFstat();
+        void testStat();
         void testLink();
 
         typedef void (CFileFunction::*PFileFunc)();
