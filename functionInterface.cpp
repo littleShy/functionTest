@@ -14,7 +14,7 @@ IFunctionInterface::IFunctionInterface(CUtility::SFunctionParam &sParam)
 
 void IFunctionInterface::initFunctionStr()
 {
-    cout << "Init function type..." << endl;
+    cout << "Init function type begin." << endl;
     // pthread function
     s_mapFunctionStr["pthread"] = EPTHREAD_FUNCTION_TYPE;
     // pthread sub function
@@ -24,6 +24,8 @@ void IFunctionInterface::initFunctionStr()
     s_mapFunctionStr["file"] = EFILE_FUNCTION_TYPE;
     // file sub function
     CFileFunction::initSubFunctionStr(s_mapSubFunctionStr[EFILE_FUNCTION_TYPE]);
+    
+    cout << "Init function type end." << endl;
 }
 
 void IFunctionInterface::usage() 
@@ -35,10 +37,7 @@ void IFunctionInterface::usage()
         cout << "\t" << iter->first << endl;
         if(s_mapSubFunctionStr.find(iter->second) == s_mapSubFunctionStr.end())
         {
-            char szErrorMsg[32];
-            int iErrorCode = 10001;
-            snprintf(szErrorMsg, sizeof(szErrorMsg), "option for '%s' error!!", iter->first);
-            throw CFunctionException(szErrorMsg, iErrorCode);
+            THROW_FUNCTION_EXCEPTION(EERROR_NO_VALID_SUB_FUNCTION);
         }
         MapFunctionStr mapSubFunctionStr = s_mapSubFunctionStr.at(iter->second);
         

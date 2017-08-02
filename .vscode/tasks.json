@@ -10,10 +10,28 @@
             "windows": {
                 "command": "make"
             },
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
+            },
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
             }
         },
         {
@@ -27,57 +45,8 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
-            }
-        },
-        {
-            "taskName": "Run(No args)",
-            "type": "process",
-            "command": "$(fileBasenameNoExtension}.exe",
-            "windows": {
-                "command": "$(fileBasenameNoExtension}.exe"
             },
-            "group": "test",
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            }
-        },
-        {
-            "taskName": "Run(With custom args)",
-            "type": "process",
-            "command": "$(fileBasenameNoExtension}.exe",
-            "args": [
-                "-t",
-                "file",
-                "-s",
-                "lin"
-            ],
-            "windows": {
-                "command": "$(fileBasenameNoExtension}.exe",
-                "args": [
-                "-t",
-                "file",
-                "-s",
-                "lin"
-                ]
-            },
-            "group": "test",
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            }
+            "problemMatcher": []
         }
-    ],
-    "problemMatcher": {
-        "owner": "cpp",
-        "fileLocation": ["relative", "${workspaceRoot}"],
-        "pattern": {
-            "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-            "file": 1,
-            "line": 2,
-            "column": 3,
-            "severity": 4,
-            "message": 5
-        }
-    }
+    ]
 }

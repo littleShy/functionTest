@@ -13,20 +13,27 @@ int main(int argc, char * argv[])
 		IFunctionInterface::usage();
 		return -1;
 	}
-	switch(sParam.iFunction)
+	try
 	{
-		case IFunctionInterface::EPTHREAD_FUNCTION_TYPE:
-			pFunction = new CPthreadFunction(sParam);
-			break;
-		case IFunctionInterface::EFILE_FUNCTION_TYPE:
-			pFunction = new CFileFunction(sParam);
-			break;
-		default:
-			IFunctionInterface::usage();
-			break;
+		switch(sParam.iFunction)
+		{
+			case IFunctionInterface::EPTHREAD_FUNCTION_TYPE:
+				pFunction = new CPthreadFunction(sParam);
+				break;
+			case IFunctionInterface::EFILE_FUNCTION_TYPE:
+				pFunction = new CFileFunction(sParam);
+				break;
+			default:
+				IFunctionInterface::usage();
+				break;
+		}
+		if(pFunction != NULL)
+			pFunction->run();
 	}
-	if(pFunction != NULL)
-		pFunction->run();
+	catch(CFunctionException ex)
+	{
+		cout << "Catch CFunctionException, code: " << ex.getCode() << ", msg: " << ex.getMsg() << endl;
+	}
 	cout << "Test end." << endl;
 	return 0;
 }

@@ -52,4 +52,3 @@ int CUtility::parseInputArgs(int argc, char* argv[], SFunctionParam &sParam)
 
     return iRet;
 }
-

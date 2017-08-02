@@ -20,6 +20,29 @@ class CUtility
         static int parseInputArgs(int argc, char* argv[], SFunctionParam &sParam);
 };
 
+#define ERROR_CODE_TO_MSG_INDEX(iCode)  (iCode - EERROR_MIN_ENUM)
+
+#define THROW_FUNCTION_EXCEPTION(iCode) \
+    do  \
+    {   \
+        throw CFunctionException((char*)szErrorMsg[ERROR_CODE_TO_MSG_INDEX(iCode)], iCode); \
+    }while(0)
+
+enum ERROR_CODE
+{
+    EERROR_MIN_ENUM = 1001,
+    EERROR_INVALID_FUNCTION_TYPE = 1001,
+    EERROR_INVALID_SUB_FUNCTION_TYPE,
+    EERROR_NO_VALID_SUB_FUNCTION,
+    EERROR_MAX_ENUM
+};
+
+const char szErrorMsg[EERROR_MAX_ENUM-2][64] = 
+{
+"Invalid function type.",
+"Invalid sub function type."
+};
+
 class CFunctionException
 {
     public:
@@ -31,7 +54,7 @@ class CFunctionException
         inline char *getMsg(){return m_szErrorMsg;}
         inline int getCode(){return m_iErrorCode;}
     private:
-        char m_szErrorMsg[32];
+        char m_szErrorMsg[64];
         int m_iErrorCode;
 };
 
