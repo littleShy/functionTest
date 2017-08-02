@@ -16,9 +16,9 @@ void CFileFunction::initSubFunctionStr(IFunctionInterface::MapFunctionStr &mSubF
     cout << "Init CFileFunction sub function begin." << endl;
 
     mSubFunctionStr["link"] = EFILE_SUB_TYPE_LINK;
-    m_pFuncs[EFILE_SUB_TYPE_LINK] = &CFileFunction::link;
+    m_pFuncs[EFILE_SUB_TYPE_LINK] = &CFileFunction::testLink;
     mSubFunctionStr["fstat"] = EFILE_SUB_TYPE_FSTAT;
-    m_pFuncs[EFILE_SUB_TYPE_FSTAT] = &CFileFunction::fstat;
+    m_pFuncs[EFILE_SUB_TYPE_FSTAT] = &CFileFunction::testFstat;
 
     cout << "Init CFileFunction sub function end." << endl;
 }
@@ -39,7 +39,7 @@ void CFileFunction::run()
 void CFileFunction::testFstat()
 {
     cout << "CFileFunction test fstat begin." << endl;
-    
+
     cout << "CFileFunction test fstat end." << endl;
 }
 
