@@ -39,9 +39,9 @@ void CFileFunction::run()
 void CFileFunction::testStat()
 {
     cout << "CFileFunction test stat begin." << endl;
-    char *pFileStr = "test.xml";
+    char szFile[32] = "test.xml";
     struct stat sStat;
-    int fd = open(pFileStr, O_CREAT | O_RDWR);
+    int fd = open(szFile, O_CREAT | O_RDWR);
     if(fd < 0)
     {
         perror("Open file failed.");
@@ -53,7 +53,7 @@ void CFileFunction::testStat()
     }
 
     //st_mode
-    cout << "File (" << pFileStr << ") mode is: ";
+    cout << "File (" << szFile << ") mode is: ";
     switch(sStat.st_mode)
     {
         case S_IFMT:
@@ -104,6 +104,6 @@ void CFileFunction::testStat()
 void CFileFunction::testLink()
 {
     cout << "CFileFunction test link begin." << endl;
-    
+    cout << "Waiting for development." << endl;
     cout << "CFileFunction test link end." << endl;
 }
