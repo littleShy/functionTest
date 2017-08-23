@@ -1,11 +1,11 @@
 
 BUILDDIR:=./build/
-DEST:=$(BUILDDIR)functionTest
-SOURCE:=functionInterface.cpp utility.cpp fileFunction.cpp pthreadFunction.cpp functionTest.cpp
+DEST:=$(BUILDDIR)main
+SOURCE:= utility.cpp functionInterface.cpp fileFunction.cpp pthreadFunction.cpp sortFunction.cpp functionTest.cpp main.cpp
 #OBJECTS:=functionInterface.o utility.o fileFunction.o pthreadFunction.o functionTest.o
 OBJECTS:=$(addprefix $(BUILDDIR), $(patsubst %.cpp, %.o, $(SOURCE)))
 
-LFLAGS:=-lpthread
+LFLAGS:=-lpthread -std=c++14
 CXX:=g++
 CC:=gcc
 

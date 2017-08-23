@@ -2,6 +2,7 @@
 #include "functionInterface.h"
 #include "pthreadFunction.h"
 #include "fileFunction.h"
+#include "sortFunction.h"
 
 IFunctionInterface::MapFunctionStr IFunctionInterface::s_mapFunctionStr;
 IFunctionInterface::MapSubFunctionStr IFunctionInterface::s_mapSubFunctionStr;
@@ -12,20 +13,25 @@ IFunctionInterface::IFunctionInterface(CUtility::SFunctionParam &sParam)
     m_iSubFunctionType = sParam.iSubFunction;
 }
 
-void IFunctionInterface::initFunctionStr()
+void IFunctionInterface::initFunction()
 {
-    cout << "Init function type begin." << endl;
+    LOG_FUNC_BEGIN
     // pthread function
-    s_mapFunctionStr["pthread"] = EPTHREAD_FUNCTION_TYPE;
+    s_mapFunctionStr["pthread"] = EMAIN_TYPE_PTHREAD;
     // pthread sub function
-    CPthreadFunction::initSubFunctionStr(s_mapSubFunctionStr[EPTHREAD_FUNCTION_TYPE]);
+    CPthreadFunction::initSubFunction(s_mapSubFunctionStr[EMAIN_TYPE_PTHREAD]);
 
     // file function
-    s_mapFunctionStr["file"] = EFILE_FUNCTION_TYPE;
+    s_mapFunctionStr["file"] = EMAIN_TYPE_FILE;
     // file sub function
-    CFileFunction::initSubFunctionStr(s_mapSubFunctionStr[EFILE_FUNCTION_TYPE]);
+    CFileFunction::initSubFunction(s_mapSubFunctionStr[EMAIN_TYPE_FILE]);
+
+    // file function
+    s_mapFunctionStr["sort"] = EMAIN_TYPE_SORT;
+    // sort sub function
+    CSortFunction::initSubFunction(s_mapSubFunctionStr[EMAIN_TYPE_SORT]);
     
-    cout << "Init function type end." << endl;
+    LOG_FUNC_END
 }
 
 void IFunctionInterface::usage() 

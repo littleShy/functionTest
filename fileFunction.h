@@ -19,15 +19,15 @@ class CFileFunction : public IFunctionInterface
             EFILE_INVALID_SUB_TYPE
         };
 
-        static void initSubFunctionStr(IFunctionInterface::MapFunctionStr &mSubFunctionStr);
+        static void initSubFunction(IFunctionInterface::MapFunctionStr &mSubFunctionStr);
         void run();
 
-	private:
+        private:
+        typedef void (CFileFunction::*PFunc)();
         void testStat();
         void testLink();
 
-        typedef void (CFileFunction::*PFileFunc)();
-        static PFileFunc m_pFuncs[EFILE_INVALID_SUB_TYPE - 1];
+        static PFunc m_pFileFuncs[EFILE_INVALID_SUB_TYPE - 1];
         int m_iFileSubType;
 };
 

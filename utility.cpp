@@ -6,6 +6,8 @@ class IFunctionInterface;
 
 int CUtility::parseInputArgs(int argc, char* argv[], SFunctionParam &sParam)
 {
+    LOG_FUNC_BEGIN
+
     int ch = 0, iRet = -1;
     char szSubFunction[16];
 
@@ -30,6 +32,7 @@ int CUtility::parseInputArgs(int argc, char* argv[], SFunctionParam &sParam)
                 return -1;
                 break;
         }
+
     }
     if(sParam.iFunction == 0 || strlen(szSubFunction) == 0)
     {
@@ -50,5 +53,6 @@ int CUtility::parseInputArgs(int argc, char* argv[], SFunctionParam &sParam)
     else
         iRet = -1;
 
+    LOG_FUNC_END
     return iRet;
 }

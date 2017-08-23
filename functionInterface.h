@@ -14,8 +14,9 @@ class IFunctionInterface
   public:
 	enum EFUNCTION_TYPE
 	{
-		EPTHREAD_FUNCTION_TYPE = 1,
-		EFILE_FUNCTION_TYPE,
+		EMAIN_TYPE_PTHREAD = 1,
+		EMAIN_TYPE_FILE,
+		EMAIN_TYPE_SORT,
 		EINVALID_FUNCTION_TYPE
 	};
 
@@ -23,13 +24,13 @@ class IFunctionInterface
 	typedef MapFunctionStr::iterator IterFunctionStr;
 	typedef map<int, MapFunctionStr> MapSubFunctionStr;
 	typedef MapSubFunctionStr::iterator IterSubFunctionStr;
-
+	
 	static MapFunctionStr s_mapFunctionStr;
 	static MapSubFunctionStr s_mapSubFunctionStr;
 
 	IFunctionInterface(CUtility::SFunctionParam &sParam);
 
-	static void initFunctionStr();
+	static void initFunction();
 
 	static void usage();
 

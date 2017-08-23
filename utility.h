@@ -20,6 +20,12 @@ class CUtility
         static int parseInputArgs(int argc, char* argv[], SFunctionParam &sParam);
 };
 
+#define LOG_FUNC_BEGIN \
+    std::cout << __FUNCTION__ << " begin." << std::endl;
+
+#define LOG_FUNC_END \
+    std::cout << __FUNCTION__ << " end." << std::endl;
+
 #define ERROR_CODE_TO_MSG_INDEX(iCode)  (iCode - EERROR_MIN_ENUM)
 
 #define THROW_FUNCTION_EXCEPTION(iCode) \
@@ -41,11 +47,11 @@ enum ERROR_CODE
 
 const char szErrorMsg[EERROR_MAX_ENUM-2][64] = 
 {
-"Invalid function type.",
-"Invalid sub function type.",
-"There is no valid sub function for current function.",
-"Open file failed."
-"Function test failed."
+    "Invalid function type.",
+    "Invalid sub function type.",
+    "There is no valid sub function for current function.",
+    "Open file failed."
+    "Function test failed."
 };
 
 class CFunctionException

@@ -4,6 +4,7 @@
 #include "functionInterface.h"
 #include "fileFunction.h"
 #include "pthreadFunction.h"
+#include "sortFunction.h"
 #include "utility.h"
 
 #endif

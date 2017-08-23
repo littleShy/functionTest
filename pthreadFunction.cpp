@@ -6,7 +6,7 @@ CPthreadFunction::CPthreadFunction(CUtility::SFunctionParam &sParam): IFunctionI
 
 }
 
-void CPthreadFunction::initSubFunctionStr(IFunctionInterface::MapFunctionStr &mSubFunctionStr)
+void CPthreadFunction::initSubFunction(IFunctionInterface::MapFunctionStr &mSubFunctionStr)
 {
     cout << "Init CPthreadFunction sub function begin." << endl;
     mSubFunctionStr["sample"] = EPTHREAD_SUB_TYPE_SAMPLE;

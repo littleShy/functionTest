@@ -1,6 +1,6 @@
 #include "fileFunction.h"
 
-CFileFunction::PFileFunc CFileFunction::m_pFuncs[EFILE_INVALID_SUB_TYPE - 1] = {NULL};
+CFileFunction::PFunc CFileFunction::m_pFileFuncs[EFILE_INVALID_SUB_TYPE - 1] = {NULL};
 
 CFileFunction::CFileFunction(CUtility::SFunctionParam &sParam) throw() : IFunctionInterface(sParam)
 {
@@ -11,14 +11,14 @@ CFileFunction::CFileFunction(CUtility::SFunctionParam &sParam) throw() : IFuncti
     m_iFileSubType = sParam.iSubFunction;
 }
 
-void CFileFunction::initSubFunctionStr(IFunctionInterface::MapFunctionStr &mSubFunctionStr)
+void CFileFunction::initSubFunction(IFunctionInterface::MapFunctionStr &mSubFunctionStr)
 {
     cout << "Init CFileFunction sub function begin." << endl;
 
     mSubFunctionStr["link"] = EFILE_SUB_TYPE_LINK;
-    m_pFuncs[EFILE_SUB_TYPE_LINK] = &CFileFunction::testLink;
+    m_pFileFuncs[EFILE_SUB_TYPE_LINK] = &CFileFunction::testLink;
     mSubFunctionStr["stat"] = EFILE_SUB_TYPE_STAT;
-    m_pFuncs[EFILE_SUB_TYPE_STAT] = &CFileFunction::testStat;
+    m_pFileFuncs[EFILE_SUB_TYPE_STAT] = &CFileFunction::testStat;
 
     cout << "Init CFileFunction sub function end." << endl;
 }
@@ -27,11 +27,11 @@ void CFileFunction::run()
 {
     cout << "CFileFunction run." << endl;
 
-    if(NULL == m_pFuncs[m_iFileSubType])
+    if(NULL == m_pFileFuncs[m_iFileSubType])
     {
         THROW_FUNCTION_EXCEPTION(EERROR_INVALID_SUB_FUNCTION_TYPE);
     }
-    (this->*m_pFuncs[m_iFileSubType])();
+    (this->*m_pFileFuncs[m_iFileSubType])();
 
     cout << "CFileFunction run end." << endl;
 }

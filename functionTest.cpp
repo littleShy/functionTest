@@ -1,39 +1,28 @@
-#include "inc.h"
-using namespace std;
+#include "functionTest.h"
 
-int main(int argc, char * argv[])
+IFunctionInterface* CFunctionTest::createFunctionInstance(CUtility::SFunctionParam &sParam)
 {
-	cout << "Test start..." << endl;
-	CUtility::SFunctionParam sParam;
-	IFunctionInterface::initFunctionStr();
+	LOG_FUNC_BEGIN
 	IFunctionInterface *pFunction = NULL;
-
-	if(CUtility::parseInputArgs(argc, argv, sParam) != 0)
-	{
-		IFunctionInterface::usage();
-		return -1;
-	}
 	try
 	{
 		switch(sParam.iFunction)
 		{
-			case IFunctionInterface::EPTHREAD_FUNCTION_TYPE:
+			case IFunctionInterface::EMAIN_TYPE_PTHREAD:
 				pFunction = new CPthreadFunction(sParam);
 				break;
-			case IFunctionInterface::EFILE_FUNCTION_TYPE:
+			case IFunctionInterface::EMAIN_TYPE_FILE:
 				pFunction = new CFileFunction(sParam);
 				break;
-			default:
-				IFunctionInterface::usage();
+			case IFunctionInterface::EMAIN_TYPE_SORT:
+				pFunction = new CSortFunction(sParam);
 				break;
 		}
-		if(pFunction != NULL)
-			pFunction->run();
 	}
 	catch(CFunctionException ex)
 	{
 		cout << "Catch CFunctionException, code: " << ex.getCode() << ", msg: " << ex.getMsg() << endl;
 	}
-	cout << "Test end." << endl;
-	return 0;
+	LOG_FUNC_END
+	return pFunction;
 }

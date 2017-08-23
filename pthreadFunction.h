@@ -14,7 +14,7 @@ public:
     };
     CPthreadFunction(CUtility::SFunctionParam &sParam);
     
-	static void initSubFunctionStr(IFunctionInterface::MapFunctionStr &mSubFunctionStr);
+	static void initSubFunction(IFunctionInterface::MapFunctionStr &mSubFunctionStr);
 
     void run();
 };
