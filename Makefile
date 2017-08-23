@@ -5,7 +5,7 @@ SOURCE:= utility.cpp functionInterface.cpp fileFunction.cpp pthreadFunction.cpp 
 #OBJECTS:=functionInterface.o utility.o fileFunction.o pthreadFunction.o functionTest.o
 OBJECTS:=$(addprefix $(BUILDDIR), $(patsubst %.cpp, %.o, $(SOURCE)))
 
-LFLAGS:=-lpthread -std=c++14
+LFLAGS:=-lpthread
 CXX:=g++
 CC:=gcc
 
