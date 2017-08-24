@@ -41,7 +41,7 @@ void CSortFunction::run()
         THROW_FUNCTION_EXCEPTION(EERROR_INVALID_SUB_FUNCTION_TYPE);
     }
 
-    int iArray[] = {8,9,4,5,0,6,7,1,2,3};
+    int iArray[] = {8,3,4,5,0,6,7,1,2,9};
     cout << "before sort:" << endl;
     int len = sizeof(iArray) / sizeof(int);
     print(iArray, len);
@@ -181,7 +181,23 @@ void CSortFunction::SimpleSelectionSort(int iArray[], int n)
     
     LOG_FUNC_END
 }
-
+/********************************************************************
+*
+*                            堆排序
+*   堆排序是利用堆这种数据结构所设计的排序算法。堆是一种近似于完全二叉树(所有
+* 的叶节点)的结构。并满足性质：以最大堆为例其父节点的值总大于它的孩子节点。
+*
+*   由输入的无需数组构造一个最大堆，作为初始的无序区。把堆顶元素(最大值)和堆
+* 尾元素互换。把堆(无序区)的尺寸缩小1，调用heapify(A, 0)从新的堆顶元素开始进
+* 行调整。重复以上步骤直到堆尺寸为1。
+*
+* 最差时间复杂度 ---- O(nlogn)
+* 最优时间复杂度 ---- O(nlogn)
+* 平均时间复杂度 ---- O(nlogn)
+* 所需辅助空间 ------ O(1)
+* 稳定性 ------------ 不稳定
+*
+*********************************************************************/
 void CSortFunction::HeapSort(int iArray[], int n)
 {
     LOG_FUNC_BEGIN
@@ -222,12 +238,60 @@ void CSortFunction::BubbleSort(int iArray[], int n)
     
     LOG_FUNC_END
 }
-
+/********************************************************************
+*
+*                            快速排序
+*   快速排序采用分治策略把一个序列分为两个子序列。
+*   从序列中挑出一个元素，作为基准(pivot)。把所有比基准小的元素放在基准前面
+* 比基准大的元素放在基准后面，这个成为分区操作。对每个分区递归的执行以上步骤
+* 递归结束条件是序列大小为0,或1。
+*
+* 数据结构 --------- 数组
+* 最差时间复杂度 ---- 每次选取的基准都是最大（或最小）的元素，导致每次只划分
+*                    出了一个分区，需要进行n-1次划分才能结束递归，时间复杂
+*                    度为O(n^2)
+* 最优时间复杂度 ---- 每次选取的基准都是中位数，这样每次都均匀的划分出两个分
+*                    区，只需要logn次划分就能结束递归，时间复杂度为O(nlogn)
+* 平均时间复杂度 ---- O(nlogn)
+* 所需辅助空间 ------ 主要是递归造成的栈空间的使用(用来保存left和right等局部
+*                    变量)，取决于递归树的深度，一般为O(logn)，最差为O(n)
+* 稳定性 ---------- 不稳定
+*
+*********************************************************************/
 void CSortFunction::QuickSort(int iArray[], int n)
 {
+    LOG_FUNC_BEGIN
     
+    _QuickSort(iArray, 0, n - 1);
+    
+    LOG_FUNC_END
 }
-
+void CSortFunction::_QuickSort(int iArray[], int left, int right)
+{
+    if(left >= right)
+        return;
+    int iPivotIndex = _QuickPartition(iArray, left, right);
+    _QuickSort(iArray, left, iPivotIndex - 1);
+    _QuickSort(iArray, iPivotIndex + 1, right);
+}
+int CSortFunction::_QuickPartition(int iArray[], int left, int right)
+{
+    // 这里每次都选择最后一个元素作为基准
+    //tail为小于基准的子数组最后一个元素的索引
+    int iPivot = right, tail = left -1;
+    for(int i=left;i<right;++i)
+    {
+        // 把小于等于基准的元素放到前一个子数组末尾
+        if(iArray[i] < iArray[iPivot])
+        {
+            swap(iArray, ++tail, i);
+        }
+    }
+    // 最后把基准放到前一个子数组的后边，剩下的子数组既是大于基准的子数组
+    // 该操作很有可能把后面元素的稳定性打乱，所以快速排序是不稳定的排序算法
+    swap(iArray, tail + 1, right);
+    return tail + 1;
+}
 /********************************************************************
 *
 *                            归并排序

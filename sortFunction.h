@@ -46,6 +46,9 @@ private:
     void _Merge(int iArray[], int left, int mid, int right);
     void _MergeRecursion(int iArray[], int left, int right);
     void _MergeIteration(int iArray[], int len);
+
+    void _QuickSort(int iArray[], int left, int right);
+    int _QuickPartition(int iArray[], int left, int right);
     void print(int iArray[], int n);
     void swap(int iArray[], int i, int j);
 
