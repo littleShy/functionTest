@@ -45,7 +45,9 @@ void CSortFunction::run()
     cout << "before sort:" << endl;
     int len = sizeof(iArray) / sizeof(int);
     print(iArray, len);
+    TIMER_BEGIN
     (this->*m_pSortFuncs[m_iSortSubType])(iArray, len);
+    TIMER_POINT
     cout << "after sort:" << endl;
     print(iArray, len);
 

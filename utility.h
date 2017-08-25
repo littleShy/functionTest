@@ -2,7 +2,9 @@
 #define __UTILITY_H__
 
 #include <iostream>
-#include <string.h> 
+#include <string.h>
+#include <time.h>
+#include <sys/time.h>
 
 class CUtility
 {
@@ -18,7 +20,16 @@ class CUtility
             int iSubFunction;
         };
         static int parseInputArgs(int argc, char* argv[], SFunctionParam &sParam);
+        static void printPassedTime(const struct timeval &tTvStart, const struct timeval &tTvEnd);
 };
+
+#define TIMER_BEGIN \
+    struct timeval tTvStart, tTvEnd; \
+    gettimeofday(&tTvStart, NULL);
+
+#define TIMER_POINT \
+    gettimeofday(&tTvEnd, NULL); \
+    CUtility::printPassedTime(tTvStart, tTvEnd);
 
 #define LOG_FUNC_BEGIN \
     std::cout << __FUNCTION__ << " begin." << std::endl;

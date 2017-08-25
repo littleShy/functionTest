@@ -56,3 +56,15 @@ int CUtility::parseInputArgs(int argc, char* argv[], SFunctionParam &sParam)
     LOG_FUNC_END
     return iRet;
 }
+
+void CUtility::printPassedTime(const struct timeval &tTvStart, const struct timeval &tTvEnd)
+{
+    time_t tPassedSec = tTvEnd.tv_sec - tTvStart.tv_sec;
+    suseconds_t tPassedUsec = tTvEnd.tv_usec - tTvStart.tv_usec;
+    if(tPassedUsec < 0)
+    {
+        tPassedSec -= 1;
+        tPassedUsec += 1000000;
+    }
+    std::cout << "Time passed: " << tPassedSec << " s, " << tPassedUsec << " us." << std::endl;
+}
