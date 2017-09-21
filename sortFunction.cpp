@@ -2,7 +2,7 @@
 
 CSortFunction::PFunc CSortFunction::m_pSortFuncs[ESORT_INVALID_SUB_TYPE - 1] = {NULL};
 
-CSortFunction::CSortFunction(CUtility::SFunctionParam &sParam) throw() : IFunctionInterface(sParam)
+CSortFunction::CSortFunction(CUtility::SFunctionParam &sParam) : IFunctionInterface(sParam)
 {
     if(sParam.iSubFunction >= ESORT_INVALID_SUB_TYPE)
     {

@@ -11,7 +11,7 @@
 class CFileFunction : public IFunctionInterface
 {
 	public:
-        CFileFunction(CUtility::SFunctionParam &sParam) throw();
+        CFileFunction(CUtility::SFunctionParam &sParam);
         enum EFILE_SUB_FUNCTION
         {
             EFILE_SUB_TYPE_LINK = 1,

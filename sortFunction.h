@@ -7,7 +7,7 @@
 class CSortFunction: public IFunctionInterface
 {
 public:
-    CSortFunction(CUtility::SFunctionParam &sParam) throw();
+    CSortFunction(CUtility::SFunctionParam &sParam);
     enum{
         //插入排序-直接排序 (Straight Insertion Sort)
         ESORT_SUB_TYPE_STRAIGHT_INSERT = 1,

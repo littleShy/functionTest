@@ -3,6 +3,7 @@
 #include "pthreadFunction.h"
 #include "fileFunction.h"
 #include "sortFunction.h"
+#include "dataStructure.h"
 
 IFunctionInterface::MapFunctionStr IFunctionInterface::s_mapFunctionStr;
 IFunctionInterface::MapSubFunctionStr IFunctionInterface::s_mapSubFunctionStr;
@@ -30,6 +31,11 @@ void IFunctionInterface::initFunction()
     s_mapFunctionStr["sort"] = EMAIN_TYPE_SORT;
     // sort sub function
     CSortFunction::initSubFunction(s_mapSubFunctionStr[EMAIN_TYPE_SORT]);
+
+    // dataStructure function
+    s_mapFunctionStr["dataStructure"] = EMAIN_TYPE_DATA_STRUCTURE;
+    // dataStructure sub function
+    CDataStructure::initSubFunction(s_mapSubFunctionStr[EMAIN_TYPE_DATA_STRUCTURE]);
     
     LOG_FUNC_END
 }

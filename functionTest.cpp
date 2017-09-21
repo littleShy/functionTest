@@ -17,6 +17,9 @@ IFunctionInterface* CFunctionTest::createFunctionInstance(CUtility::SFunctionPar
 			case IFunctionInterface::EMAIN_TYPE_SORT:
 				pFunction = new CSortFunction(sParam);
 				break;
+			case IFunctionInterface::EMAIN_TYPE_DATA_STRUCTURE:
+				pFunction = new CDataStructure(sParam);
+				break;
 		}
 	}
 	catch(CFunctionException ex)

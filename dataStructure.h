@@ -13,6 +13,7 @@ public:
     {
         EDSTRUCT_SUB_TYPE_LINEAR_LIST = 1,
         EDSTRUCT_SUB_TYPE_CHAIN,
+        EDSTRUCT_SUB_TYPE_DOUBLE_CHAIN,
         EDSTRUCT_INVALID_SUB_TYPE
     };
 
@@ -23,6 +24,7 @@ private:
     typedef void (CDataStructure::*PFunc)();
     void testLinearList();
     void testChain();
+    void testDoubleChain();
 
     static PFunc m_pDataFuncs[EDSTRUCT_INVALID_SUB_TYPE - 1];
     int    m_iDataStructureSubType;

@@ -2,7 +2,7 @@
 
 CFileFunction::PFunc CFileFunction::m_pFileFuncs[EFILE_INVALID_SUB_TYPE - 1] = {NULL};
 
-CFileFunction::CFileFunction(CUtility::SFunctionParam &sParam) throw() : IFunctionInterface(sParam)
+CFileFunction::CFileFunction(CUtility::SFunctionParam &sParam) : IFunctionInterface(sParam)
 {
     if(sParam.iSubFunction >= EFILE_INVALID_SUB_TYPE)
     {
